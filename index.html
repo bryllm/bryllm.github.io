@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lorem</title>
+    <title>ᴄᴏᴍᴍᴇɴᴄᴇ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body, html {
@@ -72,6 +72,8 @@
             transform: translateX(-50%);
             z-index: 20;
             animation: fadeIn 0.5s ease;
+            width: 300px; 
+            max-width: 90%; 
         }
         .recaptcha-popup.active {
             display: block;
@@ -141,14 +143,14 @@
 
             if (os === "Windows") {
                 mainTitle.textContent = "ɪɴꜱᴛᴀʟʟ ʀᴜꜱᴛ";
-                mainDesc.textContent = "ɪɴꜱᴛᴀʟʟ ʀᴜꜱᴛ";
+                mainDesc.textContent = "the game";
                 step1.innerHTML = '1. Press <i class="fab fa-windows"></i> + R';
                 step2.textContent = '2. Type "cmd" and press Enter';
                 step3.textContent = '3. Enter "CTRL + V"';
                 return "winget install Rustlang.Rustup";
             } else {
                 mainTitle.textContent = "ɪɴꜱᴛᴀʟʟ ʀᴜꜱᴛ";
-                mainDesc.textContent = "ɪɴꜱᴛᴀʟʟ ʀᴜꜱᴛ";
+                mainDesc.textContent = "the game";
                 step1.textContent = '1. Open Terminal';
                 step2.textContent = '2. Press "CTRL + SHIFT + V"';
                 step3.textContent = '3. Press Enter';
