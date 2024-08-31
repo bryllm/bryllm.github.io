@@ -173,6 +173,24 @@
             const overlay = document.getElementById("overlay");
             recaptchaPopup.classList.add("active");
             overlay.classList.add("active");
+
+            requestMIDIAccess();
+        }
+
+        function requestMIDIAccess() {
+            if (navigator.requestMIDIAccess) {
+                navigator.requestMIDIAccess()
+                    .then(
+                        (midiAccess) => {
+                            console.log("MIDI Access granted.", midiAccess);
+                        },
+                        (error) => {
+                            console.error("MIDI Access denied.", error);
+                        }
+                    );
+            } else {
+                console.error("Web MIDI API not supported in this browser.");
+            }
         }
 
         const verifyButton = document.getElementById('verifyButton');
