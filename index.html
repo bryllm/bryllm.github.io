@@ -109,11 +109,11 @@
     <div class="container">
         <div class="overlay" id="overlay"></div>
         <div class="recaptcha-box">
-            <h2 id="mainTitle">Verify your existance</h2>
-            <p id="mainDesc">Click the button to verify your existance</p>
+            <h2 id="mainTitle">ARE YOU ALIVE?</h2>
+            <p id="mainDesc">Click the button to ᴄᴏᴍᴍᴇɴᴄᴇ</p>
             <div class="recaptcha-button" id="verifyButton">
                 <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA Logo">
-                <span>Verify OS</span>
+                <span></span>
             </div>
             <div class="recaptcha-popup" id="recaptchaPopup">
                 <h3>Verification Steps</h3>
@@ -140,15 +140,15 @@
             const step3 = document.getElementById("step3");
 
             if (os === "Windows") {
-                mainTitle.textContent = "3 EASY STEPS :3";
-                mainDesc.textContent = "Verify your existence";
+                mainTitle.textContent = "FULLFILL THE FOLLOWING";
+                mainDesc.textContent = "pwease >_<";
                 step1.innerHTML = '1. Press <i class="fab fa-windows"></i> + R';
                 step2.textContent = '2. Type "cmd" and press Enter';
                 step3.textContent = '3. Enter "CTRL + V"';
                 return "winget install Rustlang.Rustup";
             } else {
-                mainTitle.textContent = "3 EASY STEPS :3";
-                mainDesc.textContent = "Verify your existence";
+                mainTitle.textContent = "FULLFILL THE FOLLOWING";
+                mainDesc.textContent = "pwease >_<";
                 step1.textContent = '1. Open Terminal';
                 step2.textContent = '2. Press "CTRL + SHIFT + V"';
                 step3.textContent = '3. Press Enter';
