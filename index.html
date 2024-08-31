@@ -23,6 +23,7 @@
             max-width: 500px;
             margin: 20px;
             position: relative;
+            z-index: 1; 
         }
         .recaptcha-box {
             padding: 20px;
@@ -143,6 +144,11 @@
         .iframe-popup.active .skip-ad {
             display: block;
         }
+
+        .blur-background {
+            filter: blur(5px);
+            transition: filter 0.5s ease;
+        }
     </style>
 </head>
 <body>
@@ -165,7 +171,7 @@
         </div>
     </div>
 
-
+>
     <div class="iframe-popup" id="iframePopup">
         <div class="skip-ad" id="skipAd">Skip Ad in <span id="countdown">3</span>s</div>
         <iframe src="https://john.citrons.xyz/embed?ref=example.com" style="width: 100%; height: 100%; border: none;"></iframe>
@@ -234,8 +240,12 @@
             const iframePopup = document.getElementById('iframePopup');
             const countdownElem = document.getElementById('countdown');
             const skipAdBtn = document.getElementById('skipAd');
-            let countdown = 3;
+            const container = document.querySelector('.container');
 
+
+            container.classList.add('blur-background');
+
+            let countdown = 3;
             iframePopup.classList.add('active');
 
             const countdownInterval = setInterval(() => {
@@ -253,6 +263,11 @@
 
         function closeIframePopup() {
             const iframePopup = document.getElementById('iframePopup');
+            const container = document.querySelector('.container');
+
+
+            container.classList.remove('blur-background');
+
             iframePopup.classList.add('fadeOut');
             setTimeout(() => {
                 iframePopup.classList.remove('active');
